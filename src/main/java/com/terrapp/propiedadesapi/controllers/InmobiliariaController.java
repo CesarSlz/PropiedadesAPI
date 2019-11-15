@@ -24,29 +24,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.terrapp.propiedadesapi.models.Domicilio;
-import com.terrapp.propiedadesapi.repos.DomicilioRepo;
+import com.terrapp.propiedadesapi.models.Inmobiliaria;
+import com.terrapp.propiedadesapi.repos.InmobiliariaRepo;
 
 @Controller
-@RequestMapping(path = "/domicilios")
-public class DomicilioController {
+@RequestMapping(path = "/inmobiliarias")
+public class InmobiliariaController {
 	@Autowired
-	private DomicilioRepo domicilioRepo;
+	private InmobiliariaRepo inmobiliariaRepo;
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
 
-	public @ResponseBody ResponseEntity<Map<String, Object>> addNewDomicilo(@RequestBody Domicilio domicilio) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> addNewInmobiliaria(
+			@RequestBody Inmobiliaria inmobiliaria) {
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
 
 		try {
-			domicilio.setId(0);
-			domicilio.setEliminado(false);
-			domicilio.setFechaCreacion(new Date());
-			domicilio.setFechaEliminacion(null);
-			domicilio.setFechaModificacion(null);
-			domicilioRepo.save(domicilio);
+			inmobiliaria.setId(0);
+			inmobiliaria.setEliminado(false);
+			inmobiliaria.setFechaCreacion(new Date());
+			inmobiliaria.setFechaEliminacion(null);
+			inmobiliaria.setFechaModificacion(null);
+			inmobiliariaRepo.save(inmobiliaria);
 
 			mensaje = "Exito en guardar el registro";
 			status = Status.OK.getStatusCode();
@@ -69,27 +70,28 @@ public class DomicilioController {
 
 		response.put("codigo", status);
 		response.put("mensaje", mensaje);
-		response.put("datos", domicilio);
+		response.put("datos", inmobiliaria);
 
 		return ResponseEntity.status(status).body(response);
 	}
 
 	@GetMapping()
-	public @ResponseBody ResponseEntity<Map<String, Object>> getAllDomicilios() {
+	public @ResponseBody ResponseEntity<Map<String, Object>> getAllInmobiliarias() {
 
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
-		List<Domicilio> data = new ArrayList<Domicilio>();
+		List<Inmobiliaria> data = new ArrayList<Inmobiliaria>();
 
 		try {
-			data = Lists.newArrayList(domicilioRepo.findAll());
-			mensaje = "Exito al consultar Domicilios";
+			data = Lists.newArrayList(inmobiliariaRepo.findAll());
+			mensaje = "Exito al consultar Inmobiliarias";
 			status = Status.OK.getStatusCode();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al consultar domicilios";
+			mensaje = "Error al consultar Inmobiliarias";
 			status = Status.BAD_REQUEST.getStatusCode();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			mensaje = "Error, Contacta al Administrador";
@@ -105,26 +107,26 @@ public class DomicilioController {
 	}
 
 	@PutMapping(path = "/{id}", consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
-	public @ResponseBody ResponseEntity<Map<String, Object>> modifyDomiciloById(@PathVariable Integer id,
-			@RequestBody Domicilio domicilio) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> modifyInmobiliariaById(@PathVariable Integer id,
+			@RequestBody Inmobiliaria inmobiliaria) {
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
 
 		try {
-			domicilio.setId(id);
-			domicilio.setEliminado(false);
-			domicilio.setFechaCreacion(domicilioRepo.findById(id).get().getFechaCreacion());
-			domicilio.setFechaEliminacion(null);
-			domicilio.setFechaModificacion(new Date());
+			inmobiliaria.setId(id);
+			inmobiliaria.setEliminado(false);
+			inmobiliaria.setFechaCreacion(inmobiliariaRepo.findById(id).get().getFechaCreacion());
+			inmobiliaria.setFechaEliminacion(null);
+			inmobiliaria.setFechaModificacion(new Date());
 
-			domicilioRepo.save(domicilio);
+			inmobiliariaRepo.save(inmobiliaria);
 
-			mensaje = "Exito al Actualizar Domicilio";
+			mensaje = "Exito al Actualizar Inmobiliaria";
 			status = Status.OK.getStatusCode();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al Actualizar domicilios";
+			mensaje = "Error al Actualizar Inmobiliaria";
 			status = Status.BAD_REQUEST.getStatusCode();
 
 		} catch (DataIntegrityViolationException e) {
@@ -141,35 +143,35 @@ public class DomicilioController {
 
 		response.put("codigo", status);
 		response.put("mensaje", mensaje);
-		response.put("datos", domicilio);
+		response.put("datos", inmobiliaria);
 
 		return ResponseEntity.status(status).body(response);
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public @ResponseBody ResponseEntity<Map<String, Object>> deleteDomiciloById(@PathVariable Integer id) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> deleteInmobiliariaById(@PathVariable Integer id) {
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
-		Domicilio domicilio = null;
+		Inmobiliaria inmobiliaria = null;
 
 		try {
 
-			if (domicilioRepo.findById(id).get().isEliminado()) {
+			if (inmobiliariaRepo.findById(id).get().isEliminado()) {
 				mensaje = "Ya se Ha eliminado el registro";
 				status = Status.NOT_FOUND.getStatusCode();
 			} else {
-				domicilio = domicilioRepo.findById(id).get();
-				domicilio.setEliminado(true);
-				domicilio.setFechaEliminacion(new Date());
-				domicilioRepo.save(domicilio);
+				inmobiliaria = inmobiliariaRepo.findById(id).get();
+				inmobiliaria.setEliminado(true);
+				inmobiliaria.setFechaEliminacion(new Date());
+				inmobiliariaRepo.save(inmobiliaria);
 
-				mensaje = "Exito al Eliminar Domicilio";
+				mensaje = "Exito al Eliminar Inmobiliaria";
 				status = Status.OK.getStatusCode();
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al Eliminar domicilio";
+			mensaje = "Error al Eliminar Inmobiliaria";
 			status = Status.BAD_REQUEST.getStatusCode();
 
 		} catch (Exception e) {
@@ -181,7 +183,7 @@ public class DomicilioController {
 
 		response.put("codigo", status);
 		response.put("mensaje", mensaje);
-		// response.put("datos", domicilio);
+		// response.put("datos", inmobiliaria);
 
 		return ResponseEntity.status(status).body(response);
 	}

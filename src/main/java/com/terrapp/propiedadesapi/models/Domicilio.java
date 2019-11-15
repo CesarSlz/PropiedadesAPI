@@ -14,8 +14,8 @@ public class Domicilio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String calle;
 
+	private String calle;
 	private String numeroInt;
 	private String numeroExt;
 	private String cp;
