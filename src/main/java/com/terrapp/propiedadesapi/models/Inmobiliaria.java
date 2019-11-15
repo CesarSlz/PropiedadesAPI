@@ -2,6 +2,7 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,7 @@ public class Inmobiliaria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "id_domicilio", referencedColumnName = "id")
@@ -23,6 +24,9 @@ public class Inmobiliaria {
 	private String nombre;
 	private String telefono;
 	private boolean eliminado;
+
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
 	private Date fechaEliminacion;
 	private Date fechaModificacion;
@@ -31,7 +35,7 @@ public class Inmobiliaria {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Inmobiliaria(int id, Domicilio domicilio, String nombre, String telefono) {
+	public Inmobiliaria(Integer id, Domicilio domicilio, String nombre, String telefono) {
 		this.id = id;
 		this.domicilio = domicilio;
 		this.nombre = nombre;
@@ -39,11 +43,11 @@ public class Inmobiliaria {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

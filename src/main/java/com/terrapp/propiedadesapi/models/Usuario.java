@@ -2,51 +2,72 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Usuario {
-	private int id;
-	private int idInmobiliaria;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@ManyToOne
+	@JoinColumn(name = "id_inmobiliaria", referencedColumnName = "id")
+	private Inmobiliaria inmobiliaria;
+
 	private String nombre;
 	private String apellidos;
 	private String celular;
 	private String correo;
-	private String contrasena;
+	private String contraseña;
 	private String tipoUsuario;
 	private boolean eliminado;
+
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
 	private Date fechaEliminacion;
+	private Date fechaModificacion;
 
 	public Usuario() {
 	}
 
-	public Usuario(int id, int idInmobiliaria, String nombre, String apellidos, String celular, String correo,
-			String contrasena, String tipoUsuario, boolean eliminado, Date fechaCreacion, Date fechaEliminacion) {
-		this.id = id;
-		this.idInmobiliaria = idInmobiliaria;
+	public Usuario(int id, Inmobiliaria inmobiliaria, String nombre, String apellidos, String celular, String correo,
+			String contraseña, String tipoUsuario, boolean eliminado, Date fechaCreacion, Date fechaEliminacion,
+			Date fechaModificacion) {
+		// this.id = id;
+		this.inmobiliaria = inmobiliaria;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.celular = celular;
 		this.correo = correo;
-		this.contrasena = contrasena;
+		this.contraseña = contraseña;
 		this.tipoUsuario = tipoUsuario;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		// this.eliminado = eliminado;
+		this.fechaCreacion = new Date();
+		// this.fechaEliminacion = fechaEliminacion;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getIdInmobiliaria() {
-		return idInmobiliaria;
+	public Inmobiliaria getInmobiliaria() {
+		return inmobiliaria;
 	}
 
-	public void setIdInmobiliaria(int idInmobiliaria) {
-		this.idInmobiliaria = idInmobiliaria;
+	public void setIdInmobiliaria(Inmobiliaria inmobiliaria) {
+		this.inmobiliaria = inmobiliaria;
 	}
 
 	public String getNombre() {
@@ -81,12 +102,12 @@ public class Usuario {
 		this.correo = correo;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	public String getTipoUsuario() {
@@ -119,6 +140,18 @@ public class Usuario {
 
 	public void setFechaEliminacion(Date fechaEliminacion) {
 		this.fechaEliminacion = fechaEliminacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+
+	public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+		this.inmobiliaria = inmobiliaria;
 	}
 
 }

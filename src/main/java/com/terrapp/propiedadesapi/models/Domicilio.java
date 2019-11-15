@@ -13,7 +13,7 @@ public class Domicilio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	private String calle;
 	private String numeroInt;
@@ -34,7 +34,7 @@ public class Domicilio {
 	public Domicilio() {
 	}
 
-	public Domicilio(int id, String calle, String numeroInt, String numeroExt, String cp, String municipio,
+	public Domicilio(Integer id, String calle, String numeroInt, String numeroExt, String cp, String municipio,
 			String estado) {
 		this.id = id;
 		this.calle = calle;
@@ -46,11 +46,11 @@ public class Domicilio {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
