@@ -2,63 +2,60 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Venta {
-	private int id;
-	private int idCliente;
-	private int idUsuario;
-	private int idPropiedad;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@ManyToOne
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	private Propiedad propiedad;
 	private String estatus;
 	private float monto;
 	private boolean eliminado;
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public Venta() {
 	}
 
-	public Venta(int id, int idCliente, int idUsuario, int idPropiedad, String estatus, float monto, boolean eliminado,
-			Date fechaCreacion, Date fechaEliminacion) {
-		this.id = id;
-		this.idCliente = idCliente;
-		this.idUsuario = idUsuario;
-		this.idPropiedad = idPropiedad;
+	public Venta(Integer id, Propiedad propiedad, String estatus, float monto, boolean eliminado, Date fechaCreacion,
+			Date fechaModificacion, Date fechaEliminacion) {
+		this.propiedad = propiedad;
 		this.estatus = estatus;
 		this.monto = monto;
 		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
+
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getIdCliente() {
-		return idCliente;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
-	}
-
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
-	public int getIdPropiedad() {
-		return idPropiedad;
-	}
-
-	public void setIdPropiedad(int idPropiedad) {
-		this.idPropiedad = idPropiedad;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
 
 	public String getEstatus() {
@@ -91,6 +88,14 @@ public class Venta {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 	public Date getFechaEliminacion() {

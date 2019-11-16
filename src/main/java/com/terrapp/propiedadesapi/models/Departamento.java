@@ -15,7 +15,7 @@ public class Departamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
@@ -37,7 +37,7 @@ public class Departamento {
 	public Departamento() {
 	}
 
-	public Departamento(int id, Propiedad propiedad, String recamara, String bano, String medioBano,
+	public Departamento(Integer id, Propiedad propiedad, String recamara, String bano, String medioBano,
 			String estacionamiento, String piso, boolean elevador, boolean eliminado, Date fechaCreacion,
 			Date fechaModificacion, Date fechaEliminacion) {
 		this.propiedad = propiedad;
@@ -50,11 +50,11 @@ public class Departamento {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

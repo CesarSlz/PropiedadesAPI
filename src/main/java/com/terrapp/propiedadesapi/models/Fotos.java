@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class Fotos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	@ManyToOne
 	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
 	private Propiedad propiedad;
@@ -27,18 +27,18 @@ public class Fotos {
 	public Fotos() {
 	}
 
-	public Fotos(int id, Propiedad propiedad, String nombre, String url, Date fechaCreacion) {
+	public Fotos(Integer id, Propiedad propiedad, String nombre, String url, Date fechaCreacion) {
 		this.propiedad = propiedad;
 		this.nombre = nombre;
 		this.url = url;
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

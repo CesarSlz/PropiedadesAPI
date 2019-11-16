@@ -24,30 +24,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.terrapp.propiedadesapi.models.Caracteristicas;
-import com.terrapp.propiedadesapi.repos.CaracteristicasRepo;
+import com.terrapp.propiedadesapi.models.Venta;
+import com.terrapp.propiedadesapi.repos.VentaRepo;
 
 @Controller
-@RequestMapping(path = "/caracteristicas")
-public class CaracteristicasController {
+@RequestMapping(path = "/ventas")
+public class VentaController {
 	@Autowired
-	private CaracteristicasRepo caracteristicasRepo;
+	private VentaRepo ventaRepo;
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
 
-	public @ResponseBody ResponseEntity<Map<String, Object>> addNewCaracteristicas(
-			@RequestBody Caracteristicas caracteristicas) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> addNewVenta(@RequestBody Venta venta) {
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
 
 		try {
-			caracteristicas.setId(0);
-			caracteristicas.setEliminado(false);
-			caracteristicas.setFechaCreacion(new Date());
-			caracteristicas.setFechaEliminacion(null);
-			caracteristicas.setFechaModificacion(null);
-			caracteristicasRepo.save(caracteristicas);
+			venta.setId(0);
+			venta.setEliminado(false);
+			venta.setFechaCreacion(new Date());
+			venta.setFechaEliminacion(null);
+			venta.setFechaModificacion(null);
+			ventaRepo.save(venta);
 
 			mensaje = "Exito en guardar el registro";
 			status = Status.OK.getStatusCode();
@@ -63,38 +62,38 @@ public class CaracteristicasController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			mensaje = "Error, contacta al administrador";
+			mensaje = "Error, Contacta al Administrador";
 			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
 		}
 		response = new LinkedHashMap<>();
 
 		response.put("codigo", status);
 		response.put("mensaje", mensaje);
-		response.put("datos", caracteristicas);
+		response.put("datos", venta);
 
 		return ResponseEntity.status(status).body(response);
 	}
 
 	@GetMapping()
-	public @ResponseBody ResponseEntity<Map<String, Object>> getAllCaracteristicas() {
+	public @ResponseBody ResponseEntity<Map<String, Object>> getAllVentas() {
 
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
-		List<Caracteristicas> data = new ArrayList<Caracteristicas>();
+		List<Venta> data = new ArrayList<Venta>();
 
 		try {
-			data = Lists.newArrayList(caracteristicasRepo.findAll());
-			mensaje = "Exito al consultar características";
+			data = Lists.newArrayList(ventaRepo.findAll());
+			mensaje = "Exito al consultar Ventas";
 			status = Status.OK.getStatusCode();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al consultar características";
+			mensaje = "Error al consultar Ventas";
 			status = Status.BAD_REQUEST.getStatusCode();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			mensaje = "Error, contacta al administrador";
+			mensaje = "Error, Contacta al Administrador";
 			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
 		}
 		response = new LinkedHashMap<>();
@@ -107,26 +106,26 @@ public class CaracteristicasController {
 	}
 
 	@PutMapping(path = "/{id}", consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
-	public @ResponseBody ResponseEntity<Map<String, Object>> modifyCaracteristicasById(@PathVariable Integer id,
-			@RequestBody Caracteristicas caracteristicas) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> modifyVentaById(@PathVariable Integer id,
+			@RequestBody Venta venta) {
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
 
 		try {
-			caracteristicas.setId(id);
-			caracteristicas.setEliminado(false);
-			caracteristicas.setFechaCreacion(caracteristicasRepo.findById(id).get().getFechaCreacion());
-			caracteristicas.setFechaEliminacion(null);
-			caracteristicas.setFechaModificacion(new Date());
+			venta.setId(id);
+			venta.setEliminado(false);
+			venta.setFechaCreacion(ventaRepo.findById(id).get().getFechaCreacion());
+			venta.setFechaEliminacion(null);
+			venta.setFechaModificacion(new Date());
 
-			caracteristicasRepo.save(caracteristicas);
+			ventaRepo.save(venta);
 
-			mensaje = "Exito al actualizar características";
+			mensaje = "Exito al Actualizar Venta";
 			status = Status.OK.getStatusCode();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al actualizar características";
+			mensaje = "Error al Actualizar Venta";
 			status = Status.BAD_REQUEST.getStatusCode();
 
 		} catch (DataIntegrityViolationException e) {
@@ -136,54 +135,54 @@ public class CaracteristicasController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			mensaje = "Error, contacta al administrador";
+			mensaje = "Error, Contacta al Administrador";
 			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
 		}
 		response = new LinkedHashMap<>();
 
 		response.put("codigo", status);
 		response.put("mensaje", mensaje);
-		response.put("datos", caracteristicas);
+		response.put("datos", venta);
 
 		return ResponseEntity.status(status).body(response);
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public @ResponseBody ResponseEntity<Map<String, Object>> deleteCaracteristicasById(@PathVariable Integer id) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> deleteVentaById(@PathVariable Integer id) {
 		Map<String, Object> response = null;
 		String mensaje = null;
 		int status = 0;
-		Caracteristicas caracteristicas = null;
+		Venta venta = null;
 
 		try {
 
-			if (caracteristicasRepo.findById(id).get().isEliminado()) {
-				mensaje = "Ya se ha eliminado el registro";
+			if (ventaRepo.findById(id).get().isEliminado()) {
+				mensaje = "Ya se Ha eliminado el registro";
 				status = Status.NOT_FOUND.getStatusCode();
 			} else {
-				caracteristicas = caracteristicasRepo.findById(id).get();
-				caracteristicas.setEliminado(true);
-				caracteristicas.setFechaEliminacion(new Date());
-				caracteristicasRepo.save(caracteristicas);
+				venta = ventaRepo.findById(id).get();
+				venta.setEliminado(true);
+				venta.setFechaEliminacion(new Date());
+				ventaRepo.save(venta);
 
-				mensaje = "Exito al eliminar características";
+				mensaje = "Exito al Eliminar Venta";
 				status = Status.OK.getStatusCode();
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al eliminar características";
+			mensaje = "Error al Eliminar Venta";
 			status = Status.BAD_REQUEST.getStatusCode();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			mensaje = "Error, contacta al administrador";
+			mensaje = "Error, Contacta al Administrador";
 			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
 		}
 		response = new LinkedHashMap<>();
 
 		response.put("codigo", status);
 		response.put("mensaje", mensaje);
-		// response.put("datos", caracteristicas);
+		// response.put("datos", venta);
 
 		return ResponseEntity.status(status).body(response);
 	}

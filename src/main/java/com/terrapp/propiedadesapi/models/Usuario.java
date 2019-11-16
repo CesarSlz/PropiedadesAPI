@@ -38,9 +38,9 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(int id, Inmobiliaria inmobiliaria, String nombre, String apellidos, String celular, String correo,
-			String contrasena, String tipoUsuario, boolean eliminado, Date fechaCreacion, Date fechaEliminacion,
-			Date fechaModificacion) {
+	public Usuario(Integer id, Inmobiliaria inmobiliaria, String nombre, String apellidos, String celular,
+			String correo, String contrasena, String tipoUsuario, boolean eliminado, Date fechaCreacion,
+			Date fechaEliminacion, Date fechaModificacion) {
 		// this.id = id;
 		this.inmobiliaria = inmobiliaria;
 		this.nombre = nombre;

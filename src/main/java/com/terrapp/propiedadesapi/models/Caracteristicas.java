@@ -12,15 +12,15 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Caracteristicas {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	private Integer id;
+
 	@ManyToOne
 	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
 	private Propiedad propiedad;
-	
+
 	private boolean chimenea;
 	private boolean accesoDiscapacitados;
 	private boolean alberca;
@@ -29,7 +29,7 @@ public class Caracteristicas {
 	private boolean jardin;
 	private boolean cocinaIntegral;
 	private boolean eliminado;
-	
+
 	@Column(name = "fecha_creacion")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
@@ -39,9 +39,9 @@ public class Caracteristicas {
 	public Caracteristicas() {
 	}
 
-	public Caracteristicas(int id, Propiedad propiedad, boolean chimenea, boolean accesoDiscapacitados, boolean alberca,
-			boolean amueblado, boolean mascotas, boolean jardin, boolean cocinaIntegral, boolean eliminado,
-			Date fechaCreacion, Date fechaEliminacion) {
+	public Caracteristicas(Integer id, Propiedad propiedad, boolean chimenea, boolean accesoDiscapacitados,
+			boolean alberca, boolean amueblado, boolean mascotas, boolean jardin, boolean cocinaIntegral,
+			boolean eliminado, Date fechaCreacion, Date fechaEliminacion) {
 		this.propiedad = propiedad;
 		this.chimenea = chimenea;
 		this.accesoDiscapacitados = accesoDiscapacitados;
@@ -53,11 +53,11 @@ public class Caracteristicas {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

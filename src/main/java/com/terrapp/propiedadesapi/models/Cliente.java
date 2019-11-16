@@ -10,17 +10,17 @@ import javax.persistence.Id;
 
 @Entity
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	private String nombre;
 	private String apellidos;
 	private String celular;
 	private String correo;
 	private String contrasena;
 	private boolean eliminado;
-	
+
 	@Column(name = "fecha_creacion")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
@@ -30,7 +30,7 @@ public class Cliente {
 	public Cliente() {
 	}
 
-	public Cliente(int id, String nombre, String apellidos, String celular, String correo, String contrasena,
+	public Cliente(Integer id, String nombre, String apellidos, String celular, String correo, String contrasena,
 			boolean eliminado, Date fechaCreacion, Date fechaEliminacion) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -40,11 +40,11 @@ public class Cliente {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -103,7 +103,7 @@ public class Cliente {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	
+
 	public Date getFechaModificacion() {
 		return fechaModificacion;
 	}
