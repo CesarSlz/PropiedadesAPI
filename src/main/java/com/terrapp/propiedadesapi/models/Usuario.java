@@ -25,7 +25,7 @@ public class Usuario {
 	private String apellidos;
 	private String celular;
 	private String correo;
-	private String contraseña;
+	private String contrasena;
 	private String tipoUsuario;
 	private boolean eliminado;
 
@@ -39,7 +39,7 @@ public class Usuario {
 	}
 
 	public Usuario(int id, Inmobiliaria inmobiliaria, String nombre, String apellidos, String celular, String correo,
-			String contraseña, String tipoUsuario, boolean eliminado, Date fechaCreacion, Date fechaEliminacion,
+			String contrasena, String tipoUsuario, boolean eliminado, Date fechaCreacion, Date fechaEliminacion,
 			Date fechaModificacion) {
 		// this.id = id;
 		this.inmobiliaria = inmobiliaria;
@@ -47,7 +47,7 @@ public class Usuario {
 		this.apellidos = apellidos;
 		this.celular = celular;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.tipoUsuario = tipoUsuario;
 		// this.eliminado = eliminado;
 		this.fechaCreacion = new Date();
@@ -102,12 +102,12 @@ public class Usuario {
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getTipoUsuario() {
