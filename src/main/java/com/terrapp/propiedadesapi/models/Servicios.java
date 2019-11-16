@@ -12,11 +12,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Servicios {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	private Integer id;
+
 	@ManyToOne
 	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
 	private Propiedad propiedad;
@@ -28,7 +28,7 @@ public class Servicios {
 	private boolean seguridadPrivada;
 	private boolean calentadorAgua;
 	private boolean eliminado;
-	
+
 	@Column(name = "fecha_creacion")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
@@ -38,7 +38,7 @@ public class Servicios {
 	public Servicios() {
 	}
 
-	public Servicios(int id, Propiedad propiedad, boolean gas, boolean ac, boolean cisterna, boolean calefaccion,
+	public Servicios(Integer id, Propiedad propiedad, boolean gas, boolean ac, boolean cisterna, boolean calefaccion,
 			boolean gimnasio, boolean seguridadPrivada, boolean calentadorAgua, boolean eliminado, Date fechaCreacion,
 			Date fechaEliminacion) {
 		this.propiedad = propiedad;
@@ -52,11 +52,11 @@ public class Servicios {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -12,11 +12,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class AreasCompartidas {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	private Integer id;
+
 	@ManyToOne
 	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
 	private Propiedad propiedad;
@@ -25,7 +25,7 @@ public class AreasCompartidas {
 	private boolean estacionamientoVisita;
 	private boolean areasRecreativas;
 	private boolean eliminado;
-	
+
 	@Column(name = "fecha_creacion")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
@@ -35,10 +35,9 @@ public class AreasCompartidas {
 	public AreasCompartidas() {
 	}
 
-	public AreasCompartidas(int id, Propiedad propiedad, boolean alberca, boolean salonUsosMultiples,
+	public AreasCompartidas(Integer id, Propiedad propiedad, boolean alberca, boolean salonUsosMultiples,
 			boolean estacionamientoVisita, boolean areasRecreativas, boolean eliminado, Date fechaCreacion,
 			Date fechaEliminacion) {
-		super();
 		this.propiedad = propiedad;
 		this.alberca = alberca;
 		this.salonUsosMultiples = salonUsosMultiples;
@@ -47,11 +46,11 @@ public class AreasCompartidas {
 		this.fechaCreacion = new Date();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
