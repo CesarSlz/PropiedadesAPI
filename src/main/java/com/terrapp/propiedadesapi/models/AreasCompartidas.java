@@ -2,33 +2,49 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class AreasCompartidas {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int idPropiedad;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	private Propiedad propiedad;
 	private boolean alberca;
 	private boolean salonUsosMultiples;
-	private boolean estacionamientoVisitas;
+	private boolean estacionamientoVisita;
 	private boolean areasRecreativas;
 	private boolean eliminado;
+	
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public AreasCompartidas() {
 	}
 
-	public AreasCompartidas(int id, int idPropiedad, boolean alberca, boolean salonUsosMultiples,
-			boolean estacionamientoVisitas, boolean areasRecreativas, boolean eliminado, Date fechaCreacion,
+	public AreasCompartidas(int id, Propiedad propiedad, boolean alberca, boolean salonUsosMultiples,
+			boolean estacionamientoVisita, boolean areasRecreativas, boolean eliminado, Date fechaCreacion,
 			Date fechaEliminacion) {
 		super();
-		this.id = id;
-		this.idPropiedad = idPropiedad;
+		this.propiedad = propiedad;
 		this.alberca = alberca;
 		this.salonUsosMultiples = salonUsosMultiples;
-		this.estacionamientoVisitas = estacionamientoVisitas;
+		this.estacionamientoVisita = estacionamientoVisita;
 		this.areasRecreativas = areasRecreativas;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
 	}
 
 	public int getId() {
@@ -39,12 +55,12 @@ public class AreasCompartidas {
 		this.id = id;
 	}
 
-	public int getIdPropiedad() {
-		return idPropiedad;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setIdPropiedad(int idPropiedad) {
-		this.idPropiedad = idPropiedad;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
 
 	public boolean isAlberca() {
@@ -63,12 +79,12 @@ public class AreasCompartidas {
 		this.salonUsosMultiples = salonUsosMultiples;
 	}
 
-	public boolean isEstacionamientoVisitas() {
-		return estacionamientoVisitas;
+	public boolean isEstacionamientoVisita() {
+		return estacionamientoVisita;
 	}
 
-	public void setEstacionamientoVisitas(boolean estacionamientoVisitas) {
-		this.estacionamientoVisitas = estacionamientoVisitas;
+	public void setEstacionamientoVisita(boolean estacionamientoVisita) {
+		this.estacionamientoVisita = estacionamientoVisita;
 	}
 
 	public boolean isAreasRecreativas() {
@@ -93,6 +109,14 @@ public class AreasCompartidas {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 	public Date getFechaEliminacion() {

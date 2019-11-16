@@ -2,9 +2,24 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Servicios {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int idPropiedad;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	private Propiedad propiedad;
 	private boolean gas;
 	private boolean ac;
 	private boolean cisterna;
@@ -13,17 +28,20 @@ public class Servicios {
 	private boolean seguridadPrivada;
 	private boolean calentadorAgua;
 	private boolean eliminado;
+	
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public Servicios() {
 	}
 
-	public Servicios(int id, int idPropiedad, boolean gas, boolean ac, boolean cisterna, boolean calefaccion,
+	public Servicios(int id, Propiedad propiedad, boolean gas, boolean ac, boolean cisterna, boolean calefaccion,
 			boolean gimnasio, boolean seguridadPrivada, boolean calentadorAgua, boolean eliminado, Date fechaCreacion,
 			Date fechaEliminacion) {
-		this.id = id;
-		this.idPropiedad = idPropiedad;
+		this.propiedad = propiedad;
 		this.gas = gas;
 		this.ac = ac;
 		this.cisterna = cisterna;
@@ -31,9 +49,7 @@ public class Servicios {
 		this.gimnasio = gimnasio;
 		this.seguridadPrivada = seguridadPrivada;
 		this.calentadorAgua = calentadorAgua;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
 	}
 
 	public int getId() {
@@ -44,12 +60,12 @@ public class Servicios {
 		this.id = id;
 	}
 
-	public int getIdPropiedad() {
-		return idPropiedad;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setIdPropiedad(int idPropiedad) {
-		this.idPropiedad = idPropiedad;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
 
 	public boolean isGas() {
@@ -122,6 +138,14 @@ public class Servicios {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 	public Date getFechaEliminacion() {

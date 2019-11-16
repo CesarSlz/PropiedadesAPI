@@ -2,9 +2,25 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Caracteristicas {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int idPropiedad;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	private Propiedad propiedad;
+	
 	private boolean chimenea;
 	private boolean accesoDiscapacitados;
 	private boolean alberca;
@@ -13,17 +29,20 @@ public class Caracteristicas {
 	private boolean jardin;
 	private boolean cocinaIntegral;
 	private boolean eliminado;
+	
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public Caracteristicas() {
 	}
 
-	public Caracteristicas(int id, int idPropiedad, boolean chimenea, boolean accesoDiscapacitados, boolean alberca,
+	public Caracteristicas(int id, Propiedad propiedad, boolean chimenea, boolean accesoDiscapacitados, boolean alberca,
 			boolean amueblado, boolean mascotas, boolean jardin, boolean cocinaIntegral, boolean eliminado,
 			Date fechaCreacion, Date fechaEliminacion) {
-		this.id = id;
-		this.idPropiedad = idPropiedad;
+		this.propiedad = propiedad;
 		this.chimenea = chimenea;
 		this.accesoDiscapacitados = accesoDiscapacitados;
 		this.alberca = alberca;
@@ -31,9 +50,7 @@ public class Caracteristicas {
 		this.mascotas = mascotas;
 		this.jardin = jardin;
 		this.cocinaIntegral = cocinaIntegral;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
 	}
 
 	public int getId() {
@@ -44,12 +61,12 @@ public class Caracteristicas {
 		this.id = id;
 	}
 
-	public int getIdPropiedad() {
-		return idPropiedad;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setIdPropiedad(int idPropiedad) {
-		this.idPropiedad = idPropiedad;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
 
 	public boolean isChimenea() {
@@ -122,6 +139,14 @@ public class Caracteristicas {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 	public Date getFechaEliminacion() {
