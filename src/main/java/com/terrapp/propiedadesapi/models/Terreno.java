@@ -2,27 +2,40 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
-public class Terreno extends Propiedad {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Terreno {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int idPropiedad;
+	@ManyToOne
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	private Propiedad propiedad;
 	private boolean luz;
 	private boolean agua;
 	private boolean eliminado;
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public Terreno() {
 	}
 
-	public Terreno(int id, int idPropiedad, boolean luz, boolean agua, boolean eliminado, Date fechaCreacion,
-			Date fechaEliminacion) {
-		this.id = id;
-		this.idPropiedad = idPropiedad;
+	public Terreno(int id, Propiedad propiedad, boolean luz, boolean agua, boolean eliminado, Date fechaCreacion,
+			Date fechaModificacion, Date fechaEliminacion) {
+		this.propiedad = propiedad;
 		this.luz = luz;
 		this.agua = agua;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
 	}
 
 	public int getId() {
@@ -33,12 +46,12 @@ public class Terreno extends Propiedad {
 		this.id = id;
 	}
 
-	public int getIdPropiedad() {
-		return idPropiedad;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setIdPropiedad(int idPropiedad) {
-		this.idPropiedad = idPropiedad;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
 
 	public boolean isLuz() {
@@ -71,6 +84,14 @@ public class Terreno extends Propiedad {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 	public Date getFechaEliminacion() {

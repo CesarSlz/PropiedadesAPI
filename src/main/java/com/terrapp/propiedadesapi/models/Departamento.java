@@ -2,9 +2,24 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
-public class Departamento extends Propiedad {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Departamento {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int idPropiedad;
+
+	@ManyToOne
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	private Propiedad propiedad;
 	private String recamara;
 	private String bano;
 	private String medioBano;
@@ -12,25 +27,27 @@ public class Departamento extends Propiedad {
 	private String piso;
 	private boolean elevador;
 	private boolean eliminado;
+
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public Departamento() {
 	}
 
-	public Departamento(int id, int idPropiedad, String recamara, String bano, String medioBano, String estacionamiento,
-			String piso, boolean elevador, boolean eliminado, Date fechaCreacion, Date fechaEliminacion) {
-		this.id = id;
-		this.idPropiedad = idPropiedad;
+	public Departamento(int id, Propiedad propiedad, String recamara, String bano, String medioBano,
+			String estacionamiento, String piso, boolean elevador, boolean eliminado, Date fechaCreacion,
+			Date fechaModificacion, Date fechaEliminacion) {
+		this.propiedad = propiedad;
 		this.recamara = recamara;
 		this.bano = bano;
 		this.medioBano = medioBano;
 		this.estacionamiento = estacionamiento;
 		this.piso = piso;
 		this.elevador = elevador;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
 	}
 
 	public int getId() {
@@ -41,12 +58,12 @@ public class Departamento extends Propiedad {
 		this.id = id;
 	}
 
-	public int getIdPropiedad() {
-		return idPropiedad;
+	public Propiedad getPropiedad() {
+		return propiedad;
 	}
 
-	public void setIdPropiedad(int idPropiedad) {
-		this.idPropiedad = idPropiedad;
+	public void setPropiedad(Propiedad propiedad) {
+		this.propiedad = propiedad;
 	}
 
 	public String getRecamara() {
@@ -119,6 +136,14 @@ public class Departamento extends Propiedad {
 
 	public void setFechaEliminacion(Date fechaEliminacion) {
 		this.fechaEliminacion = fechaEliminacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 }
