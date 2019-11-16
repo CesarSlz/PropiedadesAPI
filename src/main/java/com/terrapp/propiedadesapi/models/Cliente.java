@@ -2,7 +2,17 @@ package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Cliente {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nombre;
 	private String apellidos;
@@ -10,7 +20,11 @@ public class Cliente {
 	private String correo;
 	private String contrasena;
 	private boolean eliminado;
+	
+	@Column(name = "fecha_creacion")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;
+	private Date fechaModificacion;
 	private Date fechaEliminacion;
 
 	public Cliente() {
@@ -18,15 +32,12 @@ public class Cliente {
 
 	public Cliente(int id, String nombre, String apellidos, String celular, String correo, String contrasena,
 			boolean eliminado, Date fechaCreacion, Date fechaEliminacion) {
-		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.celular = celular;
 		this.correo = correo;
 		this.contrasena = contrasena;
-		this.eliminado = eliminado;
-		this.fechaCreacion = fechaCreacion;
-		this.fechaEliminacion = fechaEliminacion;
+		this.fechaCreacion = new Date();
 	}
 
 	public int getId() {
@@ -91,6 +102,14 @@ public class Cliente {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+	
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 	public Date getFechaEliminacion() {
