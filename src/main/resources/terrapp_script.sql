@@ -206,3 +206,21 @@ CREATE TABLE fotos(
 	fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(id_propiedad) REFERENCES propiedad(id) ON UPDATE CASCADE
 );
+
+
+
+INSERT INTO `domicilio` VALUES (1,'Ramon Corona',NULL,'2515','45019','Zapopan','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `cliente` VALUES (1,'Juan','Perez','3332801574','juan@perez.com','ElBarbaro',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `inmobiliaria` VALUES (1,1,'Generation','3336693000',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `usuario` VALUES (1,1,"Pedro",'Perez','3334805460','pedro@perez.com','contra','superUsuario',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `propiedad` VALUES (1,1,1,'una descripcion',300.50,50,'Disponible','400','500',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `areas_compartidas` VALUES (1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `caracteristicas` VALUES (1,1,1,1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `casa` VALUES (1,1,'4','3','3','3',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `departamento` VALUES (1,1,'4','3','3','3','3',0,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `fotos` VALUES (1,1,'una foto','un url','2019-01-01 00:00:00');
+INSERT INTO `historial_visita` VALUES (1,1,1,'2019-01-01 00:00:00');
+INSERT INTO `renta` VALUES (1,1,150,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `servicios` VALUES (1,1,1,1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `terreno` VALUES (1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `venta` VALUES (1,1,150,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
