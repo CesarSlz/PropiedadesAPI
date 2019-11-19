@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Departamento {
@@ -17,7 +19,8 @@ public class Departamento {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@ManyToOne
+	@JsonBackReference
+	@OneToOne
 	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
 	private Propiedad propiedad;
 	private String recamara;

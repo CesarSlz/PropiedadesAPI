@@ -1,6 +1,7 @@
 package com.terrapp.propiedadesapi.models;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Propiedad {
@@ -31,6 +36,34 @@ public class Propiedad {
 	private String areaTerreno;
 	private String areaConstruccion;
 	private boolean eliminado;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "propiedad")
+	private Set<Fotos> fotos;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private AreasCompartidas areasCompartidas;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Caracteristicas caracteristicas;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Servicios servicios;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Casa casa;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Departamento departamento;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Terreno terreno;
 
 	@Column(name = "fecha_creacion")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -161,6 +194,14 @@ public class Propiedad {
 
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
+	}
+
+	public Set<Fotos> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(Set<Fotos> fotos) {
+		this.fotos = fotos;
 	}
 
 }

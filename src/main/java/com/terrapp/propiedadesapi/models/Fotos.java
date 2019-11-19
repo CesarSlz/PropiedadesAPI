@@ -10,13 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Fotos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "id_propiedad", referencedColumnName = "id")
+	@JoinColumn(name = "id_propiedad", referencedColumnName = "id", nullable = false)
 	private Propiedad propiedad;
 	private String nombre;
 	private String url;

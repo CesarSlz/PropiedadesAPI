@@ -84,11 +84,11 @@ public class PropiedadController {
 
 		try {
 			data = Lists.newArrayList(propiedadRepo.findAll());
-			mensaje = "Exito al consultar Propiedads";
+			mensaje = "Exito al consultar Propiedades";
 			status = Status.OK.getStatusCode();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al consultar propiedads";
+			mensaje = "Error al consultar propiedades";
 			status = Status.BAD_REQUEST.getStatusCode();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -124,7 +124,7 @@ public class PropiedadController {
 			status = Status.OK.getStatusCode();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			mensaje = "Error al Actualizar propiedads";
+			mensaje = "Error al Actualizar propiedad";
 			status = Status.BAD_REQUEST.getStatusCode();
 
 		} catch (DataIntegrityViolationException e) {

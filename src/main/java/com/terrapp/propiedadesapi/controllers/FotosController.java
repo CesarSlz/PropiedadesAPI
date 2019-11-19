@@ -34,7 +34,6 @@ public class FotosController {
 	private FotosRepo fotoRepo;
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
-
 	public @ResponseBody ResponseEntity<Map<String, Object>> addNewFoto(@RequestBody Fotos foto) {
 		Map<String, Object> response = null;
 		String mensaje = null;
@@ -73,6 +72,38 @@ public class FotosController {
 
 	@GetMapping()
 	public @ResponseBody ResponseEntity<Map<String, Object>> getAllFotos() {
+
+		Map<String, Object> response = null;
+		String mensaje = null;
+		int status = 0;
+		List<Fotos> data = new ArrayList<Fotos>();
+
+		try {
+			data = Lists.newArrayList(fotoRepo.findAll());
+			mensaje = "Exito al consultar Fotoss";
+			status = Status.OK.getStatusCode();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			mensaje = "Error al consultar Fotoss";
+			status = Status.BAD_REQUEST.getStatusCode();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			mensaje = "Error, Contacta al Administrador";
+			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
+		}
+		response = new LinkedHashMap<>();
+
+		response.put("codigo", status);
+		response.put("mensaje", mensaje);
+		response.put("datos", data);
+
+		return ResponseEntity.status(status).body(response);
+	}
+
+	@GetMapping(path = "/{id_propiedad}", consumes = { MediaType.APPLICATION_JSON }, produces = {
+			MediaType.APPLICATION_JSON })
+	public @ResponseBody ResponseEntity<Map<String, Object>> getFotosByIdPropiedad() {
 
 		Map<String, Object> response = null;
 		String mensaje = null;
