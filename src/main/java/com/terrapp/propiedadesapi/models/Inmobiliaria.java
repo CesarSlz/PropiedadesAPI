@@ -23,6 +23,9 @@ public class Inmobiliaria {
 
 	private String nombre;
 	private String telefono;
+	@Column(name = "logo_url")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String logoUrl;
 	private boolean eliminado;
 
 	@Column(name = "fecha_creacion")
@@ -55,7 +58,7 @@ public class Inmobiliaria {
 		return domicilio;
 	}
 
-	public void setIdDomicilio(Domicilio domicilio) {
+	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
 	}
 
@@ -73,6 +76,14 @@ public class Inmobiliaria {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getLogoUrl() {
+		return logoUrl;
+	}
+
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
 	}
 
 	public boolean isEliminado() {

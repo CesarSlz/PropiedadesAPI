@@ -23,6 +23,7 @@ CREATE TABLE inmobiliaria(
 	id_domicilio INT NOT NULL,
 	nombre VARCHAR(30) NOT NULL,
 	telefono VARCHAR(15) NOT NULL UNIQUE,
+	logo_url VARCHAR(255) NOT NULL DEFAULT '/terrapp/resources/theme1/img/logo_cafe.png',
 	eliminado BOOLEAN NOT NULL DEFAULT FALSE,
 	fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	fecha_modificacion DATETIME,
@@ -211,7 +212,7 @@ CREATE TABLE fotos(
 
 INSERT INTO `domicilio` VALUES (1,'Ramon Corona',NULL,'2515','45019','Zapopan','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `cliente` VALUES (1,'Juan','Perez','3332801574','juan@perez.com','ElBarbaro',0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `inmobiliaria` VALUES (1,1,'Generation','3336693000',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `inmobiliaria` VALUES (1,1,'Generation','3336693000','/terrapp/resources/theme1/img/logo_cafe.png',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `usuario` VALUES (1,1,"Pedro",'Perez','3334805460','pedro@perez.com','contra','superUsuario',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `propiedad` VALUES (1,1,1,'una descripcion',300.50,50,'Disponible','400','500',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `areas_compartidas` VALUES (1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
@@ -225,7 +226,7 @@ INSERT INTO `venta` VALUES (1,1,150,"enventa",0,'2019-01-01 00:00:00',NULL,NULL)
 
 INSERT INTO `domicilio` VALUES (2,'Fresno',NULL,'2242','45800','Guadalajara','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `cliente` VALUES (2,'Cesar','Josefino','3333333333','cesar@josef.com','12345678',0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `inmobiliaria` VALUES (2,2,'El patito','3322122222',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `inmobiliaria` VALUES (2,2,'El patito','3322122222','/terrapp/resources/theme1/img/logo_cafe.png',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `usuario` VALUES (2,2,"Juan",'Almendra','3333212431','juan@almendra.com','contra2','usuario',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `propiedad` VALUES (2,2,2,'una descripcion muy chida',531.50,20,'Disponible','300','300',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `areas_compartidas` VALUES (2,2,0,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
@@ -239,7 +240,7 @@ INSERT INTO `venta` VALUES (2,2,1500000,"venta",0,'2019-01-01 00:00:00',NULL,NUL
 
 INSERT INTO `domicilio` VALUES (3,'Guillermo Baca',NULL,'3314','44960','Guadalajara','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `cliente` VALUES (3,'Little','Barbarian','3345688852','littleB@jotmail.com','12345678',0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `inmobiliaria` VALUES (3,3,'El castor feliz','3324545866',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `inmobiliaria` VALUES (3,3,'El castor feliz','3324545866','/terrapp/resources/theme1/img/logo_cafe.png',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `usuario` VALUES (3,3,"Jaime",'Huesos','3346587354','jamesB@hotmail.com','pasword','usuario',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `propiedad` VALUES (3,3,3,'una casa secreta',700.50,15,'Disponible','253','420',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `areas_compartidas` VALUES (3,3,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
