@@ -65,6 +65,14 @@ public class Propiedad {
 	@OneToOne(mappedBy = "propiedad")
 	private Terreno terreno;
 
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Venta venta;
+
+	@JsonManagedReference
+	@OneToOne(mappedBy = "propiedad")
+	private Renta renta;
+
 	@Column(name = "fecha_creacion")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaCreacion;

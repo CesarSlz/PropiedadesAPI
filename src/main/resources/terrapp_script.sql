@@ -1,3 +1,5 @@
+drop database terrapp;
+
 CREATE DATABASE terrapp;
 
 USE terrapp;
@@ -207,8 +209,6 @@ CREATE TABLE fotos(
 	FOREIGN KEY(id_propiedad) REFERENCES propiedad(id) ON UPDATE CASCADE
 );
 
-
-
 INSERT INTO `domicilio` VALUES (1,'Ramon Corona',NULL,'2515','45019','Zapopan','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `cliente` VALUES (1,'Juan','Perez','3332801574','juan@perez.com','ElBarbaro',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `inmobiliaria` VALUES (1,1,'Generation','3336693000',0,'2019-01-01 00:00:00',NULL,NULL);
@@ -217,10 +217,36 @@ INSERT INTO `propiedad` VALUES (1,1,1,'una descripcion',300.50,50,'Disponible','
 INSERT INTO `areas_compartidas` VALUES (1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `caracteristicas` VALUES (1,1,1,1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `casa` VALUES (1,1,'4','3','3','3',0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `departamento` VALUES (1,1,'4','3','3','3','3',0,0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `fotos` VALUES (1,1,'una foto','un url','2019-01-01 00:00:00');
+INSERT INTO `fotos` VALUES (1,1,'una foto','https://res.cloudinary.com/lastminute/image/upload/c_scale,w_630/q_auto/v1552352237/drdx2t9ftiqxvqxqvqen.jpg','2019-01-01 00:00:00');
 INSERT INTO `historial_visita` VALUES (1,1,1,'2019-01-01 00:00:00');
 INSERT INTO `renta` VALUES (1,1,150,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `servicios` VALUES (1,1,1,1,1,1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `terreno` VALUES (1,1,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `venta` VALUES (1,1,150,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
+
+INSERT INTO `domicilio` VALUES (2,'Fresno',NULL,'2242','45800','Guadalajara','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `cliente` VALUES (2,'Cesar','Josefino','3333333333','cesar@josef.com','12345678',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `inmobiliaria` VALUES (2,2,'El patito','3322122222',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `usuario` VALUES (2,2,"Juan",'Almendra','3333212431','juan@almendra.com','contra2','usuario',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `propiedad` VALUES (2,2,2,'una descripcion muy chida',531.50,20,'Disponible','300','300',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `areas_compartidas` VALUES (2,2,0,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `caracteristicas` VALUES (2,2,0,1,1,1,0,1,0,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `departamento` VALUES (1,2,'4','3','3','3','3',0,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `fotos` VALUES (2,2,'una foto muy chida','http://www.casasyfachadas.com/wp-content/uploads/2014/01/Burkehill-Residence-1.jpg','2019-01-01 00:00:00');
+INSERT INTO `historial_visita` VALUES (2,2,2,'2019-01-01 00:00:00');
+INSERT INTO `renta` VALUES (2,2,3500,"renta",0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `servicios` VALUES (2,2,0,0,0,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `venta` VALUES (2,2,1500000,"venta",0,'2019-01-01 00:00:00',NULL,NULL);
+
+INSERT INTO `domicilio` VALUES (3,'Guillermo Baca',NULL,'3314','44960','Guadalajara','Jalisco',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `cliente` VALUES (3,'Little','Barbarian','3345688852','littleB@jotmail.com','12345678',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `inmobiliaria` VALUES (3,3,'El castor feliz','3324545866',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `usuario` VALUES (3,3,"Jaime",'Huesos','3346587354','jamesB@hotmail.com','pasword','usuario',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `propiedad` VALUES (3,3,3,'una casa secreta',700.50,15,'Disponible','253','420',0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `areas_compartidas` VALUES (3,3,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `caracteristicas` VALUES (3,3,1,1,1,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `fotos` VALUES (3,3,'una foto goatze','https://odis.homeaway.com/odis/listing/21697239-6bbc-4239-be30-e20b7a1ce621.f6.jpg','2019-01-01 00:00:00');
+INSERT INTO `historial_visita` VALUES (3,3,3,'2019-01-01 00:00:00');
+INSERT INTO `renta` VALUES (3,3,420,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `servicios` VALUES (3,3,1,0,1,1,0,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `terreno` VALUES (1,3,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
+INSERT INTO `venta` VALUES (3,3,420,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
