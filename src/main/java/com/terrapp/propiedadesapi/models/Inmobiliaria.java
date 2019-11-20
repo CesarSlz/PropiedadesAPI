@@ -23,9 +23,12 @@ public class Inmobiliaria {
 
 	private String nombre;
 	private String telefono;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String url;
 	@Column(name = "logo_url")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String logoUrl;
+	private boolean vip;
 	private boolean eliminado;
 
 	@Column(name = "fecha_creacion")
@@ -116,6 +119,26 @@ public class Inmobiliaria {
 
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
+	}
+
+	public Boolean getVip() {
+		return vip;
+	}
+
+	public void setVip(Boolean vip) {
+		this.vip = vip;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
 	}
 
 }
