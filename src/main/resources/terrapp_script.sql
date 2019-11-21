@@ -234,7 +234,7 @@ INSERT INTO `propiedad` VALUES (2,2,2,'una descripcion muy chida',531.50,20,'Dis
 INSERT INTO `areas_compartidas` VALUES (2,2,0,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `caracteristicas` VALUES (2,2,0,1,1,1,0,1,0,0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `departamento` VALUES (1,2,'4','3','3','3','3',0,0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `fotos` VALUES (2,2,'una foto muy chida','http://www.casasyfachadas.com/wp-content/uploads/2014/01/Burkehill-Residence-1.jpg','2019-01-01 00:00:00');
+INSERT INTO `fotos` VALUES (2,2,'una foto muy chida','https://d232ndqmwsmedi.cloudfront.net/4881/460619198.jpg','2019-01-01 00:00:00');
 INSERT INTO `historial_visita` VALUES (2,2,2,'2019-01-01 00:00:00');
 INSERT INTO `renta` VALUES (2,2,3500,"renta",0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `servicios` VALUES (2,2,0,0,0,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
@@ -247,7 +247,7 @@ INSERT INTO `usuario` VALUES (3,3,"Jaime",'Huesos','3346587354','jamesB@hotmail.
 INSERT INTO `propiedad` VALUES (3,3,3,'una casa secreta',700.50,15,'Disponible','253','420',0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `areas_compartidas` VALUES (3,3,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `caracteristicas` VALUES (3,3,1,1,1,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `fotos` VALUES (3,3,'una foto goatze','https://odis.homeaway.com/odis/listing/21697239-6bbc-4239-be30-e20b7a1ce621.f6.jpg','2019-01-01 00:00:00');
+INSERT INTO `fotos` VALUES (3,3,'una foto goatze','http://cdn1.clasificados.com/mx/pictures/photos/000/102/285/original_CIMG6584.JPG','2019-01-01 00:00:00');
 INSERT INTO `historial_visita` VALUES (3,3,3,'2019-01-01 00:00:00');
 INSERT INTO `renta` VALUES (3,3,420,"enventa",0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `servicios` VALUES (3,3,1,0,1,1,0,1,1,0,'2019-01-01 00:00:00',NULL,NULL);
