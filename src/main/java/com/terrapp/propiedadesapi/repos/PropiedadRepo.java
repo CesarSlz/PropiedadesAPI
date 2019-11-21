@@ -9,5 +9,6 @@ import com.terrapp.propiedadesapi.models.Propiedad;
 public interface PropiedadRepo extends CrudRepository<Propiedad, Integer> {
 	
 		public List<Propiedad> getByEstatus(String estatus);
+		public List<Propiedad> getByUltimas();
 		
 }

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -19,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @NamedQuery(name = "Propiedad.getByEstatus", 
 query = "SELECT p FROM Propiedad p WHERE LOWER(p.estatus) = LOWER('Destacada') ORDER BY p.fechaCreacion")
+@NamedNativeQuery(name = "Propiedad.getByUltimas",
+query = "SELECT * FROM propiedad p WHERE p.eliminado = 0 ORDER BY p.fecha_creacion DESC, p.id DESC LIMIT 10", resultClass = Propiedad.class)
 public class Propiedad {
 
 	@Id
