@@ -104,36 +104,6 @@ public class PropiedadController {
 		return ResponseEntity.status(status).body(response);
 	}
 	
-	@GetMapping(path = "/{id}", produces = { MediaType.APPLICATION_JSON })
-	public @ResponseBody ResponseEntity<Map<String, Object>> getPropiedadById(@PathVariable Integer id) {
-
-		Map<String, Object> response = null;
-		String mensaje = null;
-		int status = 0;
-		List<Propiedad> data = new ArrayList<Propiedad>();
-
-		try {
-			data.add(propiedadRepo.findById(id).get());
-			mensaje = "Exito al consultar Propiedades";
-			status = Status.OK.getStatusCode();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			mensaje = "Error al consultar propiedades";
-			status = Status.BAD_REQUEST.getStatusCode();
-		} catch (Exception e) {
-			e.printStackTrace();
-			mensaje = "Error, Contacta al Administrador";
-			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
-		}
-		response = new LinkedHashMap<>();
-
-		response.put("codigo", status);
-		response.put("mensaje", mensaje);
-		response.put("datos", data);
-
-		return ResponseEntity.status(status).body(response);
-	}
-	
 	@GetMapping(path = "/destacadas")
 	public @ResponseBody ResponseEntity<Map<String, Object>> getAllPropiedadesByDestacadas() {
 
