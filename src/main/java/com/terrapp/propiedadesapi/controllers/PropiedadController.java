@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.Query;
+import javax.persistence.EntityManager;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
@@ -13,6 +15,7 @@ import org.glassfish.jersey.internal.guava.Lists;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +35,7 @@ import com.terrapp.propiedadesapi.repos.PropiedadRepo;
 public class PropiedadController {
 	@Autowired
 	private PropiedadRepo propiedadRepo;
+	private EntityManager entityManager;
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
 
@@ -75,7 +79,7 @@ public class PropiedadController {
 	}
 
 	@GetMapping()
-	public @ResponseBody ResponseEntity<Map<String, Object>> getAllPropiedads() {
+	public @ResponseBody ResponseEntity<Map<String, Object>> getAllPropiedades() {
 
 		Map<String, Object> response = null;
 		String mensaje = null;
@@ -103,6 +107,67 @@ public class PropiedadController {
 
 		return ResponseEntity.status(status).body(response);
 	}
+	
+	@GetMapping(path = "/destacadas")
+	public @ResponseBody ResponseEntity<Map<String, Object>> getAllPropiedadesByDestacadas() {
+
+		Map<String, Object> response = null;
+		String mensaje = null;
+		int status = 0;
+		List<Propiedad> data = new ArrayList<Propiedad>();
+
+		try {
+			data = Lists.newArrayList(propiedadRepo.getByEstatus("Destacada"));
+			mensaje = "Exito al consultar Propiedades";
+			status = Status.OK.getStatusCode();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			mensaje = "Error al consultar propiedades";
+			status = Status.BAD_REQUEST.getStatusCode();
+		} catch (Exception e) {
+			e.printStackTrace();
+			mensaje = "Error, Contacta al Administrador";
+			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
+		}
+		response = new LinkedHashMap<>();
+
+		response.put("codigo", status);
+		response.put("mensaje", mensaje);
+		response.put("datos", data);
+
+		return ResponseEntity.status(status).body(response);
+	}
+	
+	@GetMapping(path = "/ultimas")
+	public @ResponseBody ResponseEntity<Map<String, Object>> getUltimasPropiedades() {
+
+		Map<String, Object> response = null;
+		String mensaje = null;
+		int status = 0;
+		List<Propiedad> data = new ArrayList<Propiedad>();
+		
+		try {
+			data = null;//(List<Propiedad>)entityManager.createQuery("SELECT p FROM Propiedad p ORDER BY p.id DESC").setMaxResults(3);
+			mensaje = "Exito al consultar Propiedades";
+			status = Status.OK.getStatusCode();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			mensaje = "Error al consultar propiedades";
+			status = Status.BAD_REQUEST.getStatusCode();
+		} catch (Exception e) {
+			e.printStackTrace();
+			mensaje = "Error, Contacta al Administrador";
+			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
+		}
+		response = new LinkedHashMap<>();
+
+		response.put("codigo", status);
+		response.put("mensaje", mensaje);
+		response.put("datos", data);
+
+		return ResponseEntity.status(status).body(response);
+	}
+
 
 	@PutMapping(path = "/{id}", consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
 	public @ResponseBody ResponseEntity<Map<String, Object>> modifyDomiciloById(@PathVariable Integer id,

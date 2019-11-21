@@ -10,12 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@NamedQuery(name = "Propiedad.getByEstatus", 
+query = "SELECT p FROM Propiedad p WHERE LOWER(p.estatus) = LOWER('Destacada') ORDER BY p.fechaCreacion")
 public class Propiedad {
 
 	@Id

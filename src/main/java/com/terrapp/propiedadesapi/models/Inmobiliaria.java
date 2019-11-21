@@ -9,8 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 
 @Entity
+@NamedQuery(name = "Inmobiliaria.getByVip", 
+query = "SELECT i FROM Inmobiliaria i WHERE i.vip = 1 ORDER BY i.nombre ASC")
 public class Inmobiliaria {
 
 	@Id

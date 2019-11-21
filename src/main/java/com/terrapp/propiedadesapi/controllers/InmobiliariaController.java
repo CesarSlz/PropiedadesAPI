@@ -105,6 +105,37 @@ public class InmobiliariaController {
 
 		return ResponseEntity.status(status).body(response);
 	}
+	
+	@GetMapping(path = "/vip")
+	public @ResponseBody ResponseEntity<Map<String, Object>> getAllInmobiliariasByVip() {
+
+		Map<String, Object> response = null;
+		String mensaje = null;
+		int status = 0;
+		List<Inmobiliaria> data = new ArrayList<Inmobiliaria>();
+
+		try {
+			data = Lists.newArrayList(inmobiliariaRepo.getByVip(true));
+			mensaje = "Exito al consultar Inmobiliarias";
+			status = Status.OK.getStatusCode();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			mensaje = "Error al consultar Inmobiliarias";
+			status = Status.BAD_REQUEST.getStatusCode();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			mensaje = "Error, Contacta al Administrador";
+			status = Status.INTERNAL_SERVER_ERROR.getStatusCode();
+		}
+		response = new LinkedHashMap<>();
+
+		response.put("codigo", status);
+		response.put("mensaje", mensaje);
+		response.put("datos", data);
+
+		return ResponseEntity.status(status).body(response);
+	}
 
 	@PutMapping(path = "/{id}", consumes = { MediaType.APPLICATION_JSON }, produces = { MediaType.APPLICATION_JSON })
 	public @ResponseBody ResponseEntity<Map<String, Object>> modifyInmobiliariaById(@PathVariable Integer id,
