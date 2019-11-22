@@ -234,7 +234,7 @@ INSERT INTO `propiedad` VALUES (2,2,2,'una descripcion muy chida',531.50,20,'Dis
 INSERT INTO `areas_compartidas` VALUES (2,2,0,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `caracteristicas` VALUES (2,2,0,1,1,1,0,1,0,0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `departamento` VALUES (1,2,'4','3','3','3','3',0,0,'2019-01-01 00:00:00',NULL,NULL);
-INSERT INTO `fotos` VALUES (2,2,'una foto muy chida','https://d232ndqmwsmedi.cloudfront.net/4881/460619198.jpg','2019-01-01 00:00:00');
+INSERT INTO `fotos` VALUES (2,2,'una foto muy chida','http://www.jadecorp.com.au/uploaded/album_photos_large_435.jpg','2019-01-01 00:00:00');
 INSERT INTO `historial_visita` VALUES (2,2,2,'2019-01-01 00:00:00');
 INSERT INTO `renta` VALUES (2,2,3500,"renta",0,'2019-01-01 00:00:00',NULL,NULL);
 INSERT INTO `servicios` VALUES (2,2,0,0,0,1,1,1,1,1,'2019-01-01 00:00:00',NULL,NULL);
